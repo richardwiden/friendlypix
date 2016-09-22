@@ -2,3 +2,4 @@ lib
 *.pyc
 node_modules
 bower_components
+*-debug.log
