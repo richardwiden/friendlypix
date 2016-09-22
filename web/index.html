@@ -57,10 +57,60 @@
 </head>
 <body>
 
-<!-- Welcome/Login -->
+<!-- Welcome splash -->
 <section id="page-splash">
-
+  <div class="wide-card mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text ">Welcome</h2>
+    </div>
+    <div class="mdl-card__supporting-text">
+      This page was built by Richard Widén to serve as a showcase and uses among other things cookies, firebase, federated logins and material design.
+    </div>
+  </div>
 </section>
+
+
+<div class="demo-layout-transparent mdl-layout mdl-js-layout">
+  <header class="mdl-layout__header mdl-layout__header--transparent">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Title</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+        <a class="mdl-navigation__link" href="">Link</a>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Title</span>
+    <nav class="mdl-navigation">
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+      <a class="mdl-navigation__link" href="">Link</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <section id="page-experiences" style="display: none;">
+      <h2 class="heading mdl-typography--font-light">Who is this Richard?</h2>
+      <p>Bacon ipsum dolor amet pig andouille ham hock, salami drumstick
+        cow ball tip landjaeger pork loin bresaola hamburger. T-bone cow
+        tenderloin, brisket jerky flank short ribs turkey cupim pork belly
+        venison. Picanha jerky strip steak ham hock, tail hamburger jowl.
+        Jerky venison t-bone salami prosciutto drumstick bresaola fatback
+        tongue beef doner chicken. Shoulder venison hamburger pork belly,
+        meatball cow chicken meatloaf andouille picanha tongue beef ribs
+        ground round. Tenderloin beef ribs jerky, boudin sirloin spare ribs
+        chuck strip steak. Ground round meatball flank prosciutto fatback
+        landjaeger filet mignon.</p>
+    </section>
+  </main>
+</div>
 
 
 
@@ -69,6 +119,7 @@
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/page/page.js"></script>
+<script src="bower_components/js-cookie/src/js.cookie.js"></script>
 <!-- endbower -->
 
 <!-- Firebase -->

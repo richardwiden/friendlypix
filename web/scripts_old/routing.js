@@ -47,8 +47,7 @@ friendlyPix.Router = class {
         const clearFeed = () => friendlyPix.feed.clear();
         const showPost = postId => friendlyPix.post.loadPost(postId);
 
-        page('/', pipe(showHomeFeed, null, true),
-            pipe(displayPage, {pageId: 'feed', onlyAuthed: true}));
+        page('/', pipe(showHomeFeed, null, true), pipe(displayPage, {pageId: 'feed', onlyAuthed: true}));
         page('/feed', pipe(showGeneralFeed, null, true), pipe(displayPage, {pageId: 'feed'}));
         page('/post/:postId', pipe(showPost, null, true), pipe(displayPage, {pageId: 'post'}));
         page('/user/:userId', pipe(loadUser, null, true), pipe(displayPage, {pageId: 'user-info'}));

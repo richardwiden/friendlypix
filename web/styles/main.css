@@ -1,7 +1,45 @@
 #page-splash {
   position: fixed;
+  display: flex;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+}
+#page-splash .mdl-card__title {
+  color: #fff;
+  height: 176px;
+  background: url('/images/richard.jpg') right / cover;
+}
+.wide-card {
+  width: 512px;
+}
+.demo-layout-transparent {
+  background-image: url('/images/coffee-wide.jpg');
+  background-color: rgba(10, 10, 10, 0.8);
+  background-blend-mode: darken;
+  /*screen, overlay, darken, lighten, color-dodge,
+  color-burn, hard-light, soft-light, difference,
+  exclusion, hue, saturation, color, and luminosity
+  */
+  background-size: cover;
+  background-position: 60% 60%;
+  animation: animatedBackground 6s ease 1 ;
+}
+@keyframes animatedBackground {
+  from {
+    background-position: 30% 30%;
+  }
+  to {
+    background-position: 60% 60%;
+  }
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
 }

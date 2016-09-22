@@ -38,10 +38,9 @@ module.exports = function (grunt) {
     },
     watch: {
       scripts: {
-        files: ['scripts/*.js',"index.html"],
+        files: ['scripts/*.js',"index.html","styles/main.less"],
         tasks: ["babel", "wiredep","less:development"]
       },
-
     }
   });
 
@@ -50,5 +49,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
 
-  grunt.registerTask("watchFiles", ["babel", "wiredep", "watch"]);
+  grunt.registerTask("watchFiles", ["babel", "wiredep","less:development", "watch"]);
 };

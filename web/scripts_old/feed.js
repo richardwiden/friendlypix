@@ -18,7 +18,7 @@
 window.friendlyPix = window.friendlyPix || {};
 
 /**
- * Handles the Home and Feed UI.
+ * Handles the Experiences and Feed UI.
  */
 friendlyPix.Feed = class {
 
