@@ -9,4 +9,4 @@ xcuserdata/
 GoogleService-Info.plist
 npm-debug.log
 *.iml
-
+*-debug.log
