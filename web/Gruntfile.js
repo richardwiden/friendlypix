@@ -7,40 +7,39 @@ module.exports = function (grunt) {
         ],
       }
     },
-    "babel": {
-      "options": {
-        "sourceMap": true,
-        "experimental": true
+    babel: {
+      options: {
+        sourceMap: true,
+        presets: ['es2015']
       },
       dist: {
-        files: [{
-          "expand": true,
-          "cwd": "src/",
-          "src": ["**/*.js"],
-          "dest": "build/",
-          "ext": ".js"
-        }]
+        files: {
+          'lib/routing.js': 'scripts/routing.js'
+        }
       }
     },
-    htmlmin: {
-      dist: {
+    less: {
+      development: {
         options: {
-          removeComments: true,
-          collapseWhitespace: true
+          paths: ['styles']
         },
-        files: [{
-          "expand": true,
-          "cwd": "src/",
-          "src": ["**/*.html"],
-          "dest": "build/",
-          "ext": ".html"
-        }]
+        files: {
+          'styles/main.css': 'styles/main.less'
+        }
+      },
+      production: {
+        options: {
+          paths: ['styles']
+        },
+        files: {
+          'styles/main.css': 'styles/main.less'
+        }
       }
     },
     watch: {
       scripts: {
-        files: 'src/*.js',
-        tasks: ["babel"]
+        files: ['scripts/*.js',"index.html"],
+        tasks: ["babel", "wiredep","less:development"]
       },
 
     }
@@ -49,6 +48,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-babel');
   grunt.loadNpmTasks('grunt-wiredep');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-less');
 
-  grunt.registerTask("default", ["babel"]);
+  grunt.registerTask("watchFiles", ["babel", "wiredep", "watch"]);
 };

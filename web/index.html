@@ -48,22 +48,27 @@
 
 
   <!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css" />
   <!-- endbower -->
+
+
   <link rel="stylesheet" href="/styles/main.css">
 
 
 </head>
 <body>
 
+<!-- Welcome/Login -->
+<section id="page-splash">
+
+</section>
+
 
 
 
 
 <!-- bower:js -->
-<script src="bower_components/page/page.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/material-design-lite/material.min.js"></script>
+<script src="bower_components/page/page.js"></script>
 <!-- endbower -->
 
 <!-- Firebase -->
@@ -94,5 +99,7 @@
   };
   var firebaseUi = new firebaseui.auth.AuthUI(firebase.auth());
 </script>
+
+<script src="/lib/routing.js"></script>
 </body>
 </html>

@@ -1,7 +1,8 @@
 {
   "scripts": {
     "build": "babel scripts -s --minified --compact true -d lib; bower install; echo 'Done. Ready to deploy.'",
-    "serve": "bower install; firebase serve & babel -w scripts -s --retain-lines -d lib"
+    "serve": "bower install; firebase serve & babel -w scripts -s --retain-lines -d lib",
+    "winserve": "firebase serve"
   },
   "devDependencies": {
     "babel-cli": "^6.8.0",
@@ -10,6 +11,7 @@
     "firebase-tools": "^3.0.0",
     "grunt": "^1.0.1",
     "grunt-babel": "^6.0.0",
+    "grunt-contrib-less": "^1.4.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-exec": "^1.0.1",
     "grunt-wiredep": "^3.0.1"

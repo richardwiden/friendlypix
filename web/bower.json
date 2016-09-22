@@ -19,6 +19,7 @@
     "sharing"
   ],
   "dependencies": {
-    "jquery": "2.2.3"
+    "jquery": "2.2.3",
+    "page": "visionmedia/page.js#^1.7.1"
   }
 }
