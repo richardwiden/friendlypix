@@ -38,7 +38,7 @@ friendlyPix.Feed = class {
     $(document).ready(() => {
       // Pointers to DOM elements.
       this.pageFeed = $('#page-feed');
-      this.feedImageContainer = $('.fp-image-container', this.pageFeed);
+      this.experiencesContainer = $('.fp-image-container', this.pageFeed);
       this.noPostsMessage = $('.fp-no-posts', this.pageFeed);
       this.nextPageButton = $('.fp-next-page-button button');
       this.newPostsButton = $('.fp-new-posts-button button');
@@ -62,11 +62,11 @@ friendlyPix.Feed = class {
       const postElement = post.fillPostData(postIds[i], postData.thumb_url || postData.url,
           postData.text, postData.author, postData.timestamp, null, null, postData.full_url);
       // If a post with similar ID is already in the feed we replace it instead of appending.
-      const existingPostElement = $(`.fp-post-${postIds[i]}`, this.feedImageContainer);
+      const existingPostElement = $(`.fp-post-${postIds[i]}`, this.experiencesContainer);
       if (existingPostElement.length) {
         existingPostElement.replaceWith(postElement);
       } else {
-        this.feedImageContainer.append(postElement.addClass(`fp-post-${postIds[i]}`));
+        this.experiencesContainer.append(postElement.addClass(`fp-post-${postIds[i]}`));
       }
     }
   }
@@ -111,7 +111,7 @@ friendlyPix.Feed = class {
       const post = newPosts[postKeys[i]];
       const postElement = new friendlyPix.Post();
       this.posts.push(postElement);
-      this.feedImageContainer.prepend(postElement.fillPostData(postKeys[i], post.thumb_url ||
+      this.experiencesContainer.prepend(postElement.fillPostData(postKeys[i], post.thumb_url ||
           post.url, post.text, post.author, post.timestamp, null, null, post.full_url));
     }
   }
@@ -208,7 +208,7 @@ friendlyPix.Feed = class {
    */
   clear() {
     // Delete the existing posts if any.
-    $('.fp-post', this.feedImageContainer).remove();
+    $('.fp-post', this.experiencesContainer).remove();
 
     // Hides the "next page" and "new posts" buttons.
     this.nextPageButton.hide();

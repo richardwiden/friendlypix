@@ -9,8 +9,24 @@ whoami.Experience = class {
    */
   constructor() {
     $(document).ready(()=> {
-
+      this.experienceElement = $(whoami.Experience.createExperienceHtml());
     });
+  }
+
+  /**
+   *
+   * @returns {*}
+   */
+  fillExperienceData(){
+    const experience = this.experienceElement;
+
+    return experience;
+  }
+
+  static createExperienceHtml() {
+    return `
+    <div>Something</div>
+    `;
   }
 
 };

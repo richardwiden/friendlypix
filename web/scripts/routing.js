@@ -7,15 +7,16 @@ whoami.Router = class {
     $(document).ready(() => {
       this.pagesElements = $('[id^=page-]');
       this.splash = $('#page-splash');
-      this.splash.show().fadeIn(1000).show().delay(5000).fadeOut(2000).queue(page);
+      this.splash.show().fadeIn(100).show().delay(100).fadeOut(100).queue(page);
 
       const pipe = whoami.Router.pipe;
       const displayPage = this.displayPage.bind(this);
 
       const showExeriences = () => whoami.experiences.showExperiences();
 
-      page('/', pipe(showExeriences(), null, null), pipe(displayPage, {pageId: 'experiences'}));
-
+      page('/', pipe(showExeriences(), null, true), pipe(displayPage, {pageId: 'experiences'}));
+      page('/experiences', () => page('/'));
+      page('*', () => page('/'));
       page();
     });
   }
@@ -30,7 +31,7 @@ whoami.Router = class {
       if (element.id == 'page-' + pageId) {
         $(element).show();
       } else if (element.id == 'page-splash') {
-        $(element).delay(1000).queue.fadeOut(1000).hide();
+        //$(element).delay(1000).queue.fadeOut(1000).hide();
       } else {
         $(element).hide();
       }

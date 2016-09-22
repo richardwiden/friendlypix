@@ -16,6 +16,7 @@ module.exports = function (grunt) {
         files: {
           'lib/routing.js': 'scripts/routing.js',
           'lib/experiences.js': 'scripts/experiences.js',
+          'lib/experience.js': 'scripts/experience.js',
           'lib/firebase.js': 'scripts/firebase.js'
         }
       }
