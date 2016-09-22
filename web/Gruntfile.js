@@ -14,7 +14,9 @@ module.exports = function (grunt) {
       },
       dist: {
         files: {
-          'lib/routing.js': 'scripts/routing.js'
+          'lib/routing.js': 'scripts/routing.js',
+          'lib/experiences.js': 'scripts/experiences.js',
+          'lib/firebase.js': 'scripts/firebase.js'
         }
       }
     },
@@ -38,8 +40,16 @@ module.exports = function (grunt) {
     },
     watch: {
       scripts: {
-        files: ['scripts/*.js',"index.html","styles/main.less"],
-        tasks: ["babel", "wiredep","less:development"]
+        files: ['scripts/*.js'],
+        tasks: ["babel"]
+      },
+      html: {
+        files: ["index.html"],
+        tasks: ["wiredep"]
+      },
+      css: {
+        files: ["styles/main.less"],
+        tasks: ["less:development"]
       },
     }
   });
@@ -49,5 +59,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
 
-  grunt.registerTask("watchFiles", ["babel", "wiredep","less:development", "watch"]);
+  grunt.registerTask("watchFiles", ["babel", "wiredep", "less:development", "watch"]);
 };

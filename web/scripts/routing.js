@@ -14,12 +14,16 @@ whoami.Router = class {
 
       const showExeriences = () => whoami.experiences.showExperiences();
 
-      page('/',pipe(showExeriences(),null,null),pipe(displayPage,{pageId:'experiences'}));
+      page('/', pipe(showExeriences(), null, null), pipe(displayPage, {pageId: 'experiences'}));
 
       page();
     });
   }
 
+  /**
+   * Hides all other pages besides attribute.pageId
+   * @param attributes: { pageId : string}
+   */
   displayPage(attributes) {
     let pageId = attributes.pageId;
     this.pagesElements.each((index, element) => {
@@ -31,6 +35,27 @@ whoami.Router = class {
         $(element).hide();
       }
     });
+  }
+
+
+  /**
+   * Pipes the given function and passes the given attribute and Page.js context.
+   * Set 'optContinue' to true if there are further functions to call.
+   */
+  static pipe(funct, attribute, optContinue) {
+    return (context, next) => {
+      if (funct) {
+        const params = Object.keys(context.params);
+        if (!attribute && params.length > 0) {
+          funct(context.params[params[0]], context);
+        } else {
+          funct(attribute, context);
+        }
+      }
+      if (optContinue) {
+        next();
+      }
+    };
   }
 };
 whoami.router = new whoami.Router();
