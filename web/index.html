@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress SillyAssignmentJS -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -40,23 +41,36 @@
   <link type="text/css" rel="stylesheet"
         href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css"/>
 
-  <!-- Material design lite -->
+  <!-- Linking MDL with CDN so it can be themed-->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.blue_grey-indigo.min.css">
   <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+
+
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css" />
+  <!-- endbower -->
   <link rel="stylesheet" href="/styles/main.css">
+
+
 </head>
 <body>
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.1.0.min.js"
-        integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
-        crossorigin="anonymous"></script>
+
+
+
+
+<!-- bower:js -->
+<script src="bower_components/page/page.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/material-design-lite/material.min.js"></script>
+<!-- endbower -->
 
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
 <script>
   // Initialize Firebase
+  firebase=firebase;
   var config = {
     apiKey: "AIzaSyCM0Ty_WKspBWkROkKwx85HXbYGToOhLGA",
     authDomain: "pelagic-cycle-124319.firebaseapp.com",
