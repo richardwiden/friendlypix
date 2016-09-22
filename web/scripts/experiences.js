@@ -21,14 +21,14 @@ whoami.Experiences = class {
    */
   showExperiences(){
     this.clear();
-    whoami.firebase.getExperiences().then(experiences => {
-      const eId = Object.keys(experiences);
-      for (let i = eId.length - 1; i >= 0; i--) {
-        const experienceData = experiences[eId[i]];
+    whoami.firebase.getExperiences().then(expQuery => {
+      const expId = Object.keys(expQuery.results);
+      for (let i = expId.length - 1; i >= 0; i--) {
+        const expData = expQuery.results[expId[i]];
         const experience = new whoami.Experience();
         this.experiences.push(experience);
-        const experienceElement = experience.fillExperienceData();
-        this.experiencesContainer.append(experienceElement);
+        const expElement = experience.fillExperienceData(expId[i],expData.title,expData.type);
+        this.experiencesContainer.append(expElement);
       }
     });
   }

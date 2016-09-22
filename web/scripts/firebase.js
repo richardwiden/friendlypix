@@ -17,7 +17,7 @@ whoami.Firebase = class {
   getExperiences() {
     let ref = this.database.ref('/experiences');
     return ref.orderByKey().once('value').then(data => {
-      return {data: data.val()}
+      return {results: data.val()}
     });
   }
 };

@@ -70,15 +70,17 @@
 </section>
 
 
+<!-- Uses a header that scrolls with the text, rather than staying
+  locked at the top -->
 <div class="demo-layout-transparent mdl-layout mdl-js-layout">
-  <header class="mdl-layout__header mdl-layout__header--transparent">
+  <header class="mdl-layout__header  mdl-layout__header--scroll mdl-layout__header--transparent" style="display: flex;">
     <div class="mdl-layout__header-row">
       <!-- Title -->
       <span class="mdl-layout-title">Title</span>
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <!-- Navigation -->
-      <nav class="mdl-navigation">
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
         <a class="mdl-navigation__link" href="">Link</a>
         <a class="mdl-navigation__link" href="">Link</a>
         <a class="mdl-navigation__link" href="">Link</a>
@@ -96,20 +98,11 @@
     </nav>
   </div>
   <main class="mdl-layout__content">
-    <section id="page-experiences" style="display: none;">
-      <h2 class="heading mdl-typography--font-light">Who is this Richard?</h2>
-      <p>Bacon ipsum dolor amet pig andouille ham hock, salami drumstick
-        cow ball tip landjaeger pork loin bresaola hamburger. T-bone cow
-        tenderloin, brisket jerky flank short ribs turkey cupim pork belly
-        venison. Picanha jerky strip steak ham hock, tail hamburger jowl.
-        Jerky venison t-bone salami prosciutto drumstick bresaola fatback
-        tongue beef doner chicken. Shoulder venison hamburger pork belly,
-        meatball cow chicken meatloaf andouille picanha tongue beef ribs
-        ground round. Tenderloin beef ribs jerky, boudin sirloin spare ribs
-        chuck strip steak. Ground round meatball flank prosciutto fatback
-        landjaeger filet mignon.</p>
-      <div class="experiences-container"></div>
-    </section>
+    <div class="page-content">
+      <section id="page-experiences" style="display: none;">
+        <div class="experiences-container mdl-grid"></div>
+      </section>
+    </div>
   </main>
 </div>
 

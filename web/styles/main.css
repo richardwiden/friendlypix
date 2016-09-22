@@ -27,7 +27,7 @@
   */
   background-size: cover;
   background-position: 60% 60%;
-  animation: animatedBackground 6s ease 1 ;
+  animation: animatedBackground 6s ease 1;
 }
 @keyframes animatedBackground {
   from {
@@ -42,4 +42,38 @@
   /* This background is dark, so we set text to white. Use 87% black instead if
      your background is light. */
   color: white;
+}
+.personal {
+  background-color: #4caf50;
+}
+.professional {
+  background-color: #3E4EB8;
+}
+.school {
+  background-color: #2196f3;
+}
+.experience-card {
+  width: 100%;
+}
+.experience-card > .mdl-card__actions {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.experience-card > .mdl-card__title {
+  align-items: flex-start;
+}
+.experience-card > .mdl-card__title > h4 {
+  margin-top: 0;
+}
+.experience-card > .mdl-card__actions {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+}
+.experience-card > .mdl-card__actions > .material-icons {
+  padding-right: 10px;
+}
+.experience-card > .mdl-card__title,
+.experience-card > .mdl-card__actions,
+.experience-card > .mdl-card__actions > .mdl-button {
+  color: #fff;
 }
