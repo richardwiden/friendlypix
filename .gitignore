@@ -8,3 +8,5 @@ xcuserdata/
 *.xcworkspace/
 GoogleService-Info.plist
 npm-debug.log
+*.iml
+
