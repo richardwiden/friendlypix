@@ -1,10 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="whoami by richardwiden">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>whoami by richardwiden</title>
+
+  <link rel="shortcut icon" href="/images/favicon.png">
+  <!-- Disable tap highlight on IE -->
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <!-- Web Application Manifest -->
+  <link rel="manifest" href="/manifest.json">
+
+  <!-- Add to home screen for Chrome on Android -->
+  <!-- TODO change colors -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="whoami">
+  <meta name="theme-color" content="#303F9F">
+  <link rel="icon" sizes="192x192" href="/images/touch/touch-icon-192x192.png">
+  <link rel="icon" sizes="128x128" href="/images/touch/touch-icon-128x128.png">
+
+  <!-- Add to home screen for Safari on iOS -->
+  <!-- TODO change colors -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
+  <link rel="apple-touch-icon" href="/images/touch/touch-icon-180x180.png">
+  <link rel="apple-touch-icon-precomposed" href="/images/touch/touch-icon-180x180.png">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#303F9F">
+
+  <!-- Tile icon for Win8 -->
+  <!-- TODO change colors -->
+  <meta name="msapplication-TileImage" content="/images/touch/touch-icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#3372DF">
+  <meta name="msapplication-navbutton-color" content="#303F9F">
+
+  <!-- Firebase UI Auth -->
+  <link type="text/css" rel="stylesheet"
+        href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css"/>
+
+  <!-- Material design lite -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.blue_grey-indigo.min.css">
+  <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+  <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
 
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"
+        integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+        crossorigin="anonymous"></script>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCM0Ty_WKspBWkROkKwx85HXbYGToOhLGA",
+    authDomain: "pelagic-cycle-124319.firebaseapp.com",
+    databaseURL: "https://pelagic-cycle-124319.firebaseio.com",
+    storageBucket: "pelagic-cycle-124319.appspot.com",
+    messagingSenderId: "657342550973"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<!-- Firebase UI for Auth -->
+<script src="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.js"></script>
+<script type="text/javascript">
+  // FirebaseUI config.
+  var uiConfig = {
+    'signInFlow': 'popup',
+    'signInOptions': [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.FacebookAuthProvider.PROVIDER_ID
+    ]
+  };
+  var firebaseUi = new firebaseui.auth.AuthUI(firebase.auth());
+</script>
 </body>
 </html>
