@@ -313,7 +313,18 @@
 <link rel="stylesheet" type="text/css" href="/bower_components/sweetalert/dist/sweetalert.css">
 
 <!-- Firebase -->
-<!-- TODO(DEVELOPER): Paste the initialization snippet from: Firebase Console > Add Firebase to your web app. -->
+<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCM0Ty_WKspBWkROkKwx85HXbYGToOhLGA",
+    authDomain: "pelagic-cycle-124319.firebaseapp.com",
+    databaseURL: "https://pelagic-cycle-124319.firebaseio.com",
+    storageBucket: "pelagic-cycle-124319.appspot.com",
+    messagingSenderId: "657342550973"
+  };
+  firebase.initializeApp(config);
+</script>
 
 <!-- Firebase UI for Auth -->
 <script src="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.js"></script>
