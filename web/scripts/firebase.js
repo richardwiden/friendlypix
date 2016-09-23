@@ -14,10 +14,15 @@ whoami.Firebase = class {
     });
   }
 
+  importObject(jsonObject){
+    let ref = this.database.ref('/experiences/');
+    return ref.push(jsonObject);
+  }
+
   getExperiences() {
-    let ref = this.database.ref('/experiences');
-    return ref.orderByKey().once('value').then(data => {
-      return {results: data.val()}
+    let ref = this.database.ref('/experiences/');
+    return ref.orderByChild('type').once('value').then(data => {
+      return {results: data.val()};
     });
   }
 };

@@ -6,17 +6,18 @@ whoami.Router = class {
   constructor() {
     $(document).ready(() => {
       this.pagesElements = $('[id^=page-]');
+      this.titleElements = $('head>title, span.mdl-layout-title');
       this.splash = $('#page-splash');
-      this.splash.show().fadeIn(100).show().delay(100).fadeOut(100).queue(page);
+      this.splash.show().fadeOut(500);
 
       const pipe = whoami.Router.pipe;
       const displayPage = this.displayPage.bind(this);
 
       const showExeriences = () => whoami.experiences.showExperiences();
 
-      page('/', pipe(showExeriences(), null, true), pipe(displayPage, {pageId: 'experiences'}));
+      page('/', pipe(showExeriences(), null, true), pipe(displayPage, {pageId: 'experiences', title: 'experiences'}));
       page('/experiences', () => page('/'));
-      page('*', () => page('/'));
+      page('/import', pipe(whoami.import.showImport, null, true), pipe(displayPage, {pageId: 'import'}));
       page();
     });
   }
@@ -27,6 +28,8 @@ whoami.Router = class {
    */
   displayPage(attributes) {
     let pageId = attributes.pageId;
+    const pageTitle = attributes.title || pageId;
+    this.titleElements.text(pageTitle);
     this.pagesElements.each((index, element) => {
       if (element.id == 'page-' + pageId) {
         $(element).show();
@@ -37,7 +40,6 @@ whoami.Router = class {
       }
     });
   }
-
 
   /**
    * Pipes the given function and passes the given attribute and Page.js context.

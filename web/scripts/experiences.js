@@ -27,7 +27,7 @@ whoami.Experiences = class {
         const expData = expQuery.results[expId[i]];
         const experience = new whoami.Experience();
         this.experiences.push(experience);
-        const expElement = experience.fillExperienceData(expId[i],expData.title,expData.type);
+        const expElement = experience.fillExperienceData(expId[i],expData.title,expData.type,expData.desc,expData.image);
         this.experiencesContainer.append(expElement);
       }
     });

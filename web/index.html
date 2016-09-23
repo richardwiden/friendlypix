@@ -64,10 +64,15 @@
       <h2 class="mdl-card__title-text ">Welcome</h2>
     </div>
     <div class="mdl-card__supporting-text">
-      This page was built by Richard Widén to serve as a showcase and uses among other things cookies, firebase, federated logins and material design.
+      This page was built by Richard Widén to serve as a showcase and uses among other things cookies, firebase,
+      federated logins and material design.
     </div>
   </div>
 </section>
+<div aria-live="assertive" aria-atomic="true" aria-relevant="text" class="mdl-snackbar mdl-js-snackbar">
+  <div class="mdl-snackbar__text"></div>
+  <button type="button" class="mdl-snackbar__action"></button>
+</div>
 
 
 <!-- Uses a header that scrolls with the text, rather than staying
@@ -102,12 +107,22 @@
       <section id="page-experiences" style="display: none;">
         <div class="experiences-container mdl-grid"></div>
       </section>
+      <section id="page-import" style="display: none;">
+        <h1>Import into db</h1>
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <textarea class="mdl-textfield__input" type="text" id="create_experience_text"></textarea>
+            <label class="mdl-textfield__label" for="create_experience_text">Create experience</label>
+          </div>
+        </form>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
+          Create
+        </button>
+        <div></div>
+      </section>
     </div>
   </main>
 </div>
-
-
-
 
 
 <!-- bower:js -->
@@ -120,7 +135,7 @@
 <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
 <script>
   // Initialize Firebase
-  firebase=firebase;
+  firebase = firebase;
   var config = {
     apiKey: "AIzaSyCM0Ty_WKspBWkROkKwx85HXbYGToOhLGA",
     authDomain: "pelagic-cycle-124319.firebaseapp.com",
@@ -147,6 +162,7 @@
 <script src="/lib/firebase.js"></script>
 <script src="/lib/experiences.js"></script>
 <script src="/lib/experience.js"></script>
+<script src="/lib/import.js"></script>
 <script src="/lib/routing.js"></script>
 
 </body>
