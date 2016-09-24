@@ -14,8 +14,13 @@ whoami.Auth = class {
       this.authContainer = '#firebaseui-auth-container';
       this.userContainers = $('.signed-in-user-container');
       this.noUserContainers = $('.signed-out-user-container');
-      this.usernameContainers=$('span.user-name',this.userContainers);
+      this.usernameContainers = $('span.user-name', this.userContainers);
+      this.signOutButton = $('#firebaseui-signout', this.authPage);
       firebaseUi.start('#firebaseui-auth-container', uiConfig);
+      this.signOutButton.click(()=> {
+        console.log("Sign out");
+        this.auth.signOut();
+      });
     });
   }
 
@@ -42,6 +47,7 @@ whoami.Auth = class {
     this.noUserContainers.show(100);
     firebaseUi.start('#firebaseui-auth-container', uiConfig);
   }
+
 
   /**
    * Returns a Promise that completes when auth is ready.

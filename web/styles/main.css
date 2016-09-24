@@ -78,7 +78,7 @@
 .whoami-section.section--center {
   max-width: 860px;
 }
-.whoami-section header {
+.whoami-section header > div {
   display: flex;
   justify-content: center;
   align-items: center;

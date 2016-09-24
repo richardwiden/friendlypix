@@ -122,8 +122,14 @@
     <section id="page-auth" class="whoami-section section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp"
              style="display: none">
       <header
-        class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--red-800 mdl-color-text--white">
-        <i class="material-icons">lock</i>
+        class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color-text--white">
+        <div class="signed-out-user-container mdl-color--red-800 " style="height:100%;width: 100%;">
+          <i class="material-icons">lock</i>
+        </div>
+        <div class="signed-in-user-container mdl-color--green-800" style="height:100%;width: 100%;">
+          <i class="material-icons">lock</i>
+        </div>
+
       </header>
       <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
         <div class="mdl-card__supporting-text">
@@ -134,10 +140,15 @@
           </div>
           <div class="signed-in-user-container">
             <h4>Signed in</h4>
-            You are signed in as <span style="font-weight: 400;"><span class="user-name"></span> </span></div>
+            You are signed in as <span style="font-weight: 600;" class="user-name"></span> </div>
         </div>
         <div class="mdl-card__actions">
           <div id="firebaseui-auth-container" class="signed-out-user-container"></div>
+          <div id="firebaseui-signout" class="signed-in-user-container">
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--color mdl-color--red-800  mdl-color-text--white">
+              Sign Out
+            </button>
+          </div>
         </div>
       </div>
 
