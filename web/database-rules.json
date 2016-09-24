@@ -1,7 +1,10 @@
 {
   "rules": {
     "experiences": {
-      ".read": true
+      ".read": true,
+      "$uid": {
+        ".write": "auth.uid === 'Hlud91S0J1fWJMXGQV39OkCsAJp2'"
+      }
     }
   }
 }
