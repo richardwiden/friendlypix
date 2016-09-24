@@ -23,7 +23,7 @@ whoami.Experiences = class {
     this.clear();
     whoami.firebase.getExperiences((err, data, id) => {
       const experience = new whoami.Experience();
-      this.experiences.push(experience);
+      this.experiences.unshift(experience);
       const expElement = experience.fillExperienceData(id, data.title, data.type, data.desc, data.image);
       this.experiencesContainer.prepend(expElement);
     });
@@ -40,20 +40,36 @@ whoami.Experiences = class {
       const desc = expData.desc;
       const image = expData.image;
       const expElement = experience.fillExperienceData(id, title, type, desc, image);
-      const elements = $('#experience-card-' + id, this.experiencesContainer);
-
-      if (elements.length) {
-        elements.replaceWith(expElement);
-      } else {
-        if (!afterId) return this.experienceContainer.prepend(expElement); //if we don't know where to place it stick it at the top
-        afterElement = $('#experience-card-' + id, this.experienceContainer);
-        afterElement.insertAfter(expElement);
-      }
+      placeExperience(id, expElement)
     }
   }
 
+  /**
+   * Places an experience and its element correctly
+   * @param id
+   * @param expElement
+   * @param experience
+   * @returns {JQuery|*}
+   */
+  placeExperience(id, expElement, experience) {
+    const elements = $('#experience-card-' + id, this.experiencesContainer);
+    if (elements.length) return elements.replaceWith(expElement);
+    if (!afterId) return this.experienceContainer.prepend(expElement); //if we don't know where to place it stick it at the top
+    let expArrayIndex = -1;
+    for (let i = 0; i < this.experiences.length; i++) {
+      if (this.experiences[i].id == afterId) {
+        expArrayIndex = i;
+        break;
+      }
+    }
+    if (!expArrayIndex) return this.experienceContainer.prepend(expElement); //if we don't know where to place it stick it at the top
+    afterElement = $('#experience-card-' + id, this.experienceContainer);
+    afterElement.insertAfter(expElement);
+    this.experiences.splice(expArrayIndex, 0, experience);
+  }
+
   clear() {
-    this.experiencePage.empty();
+    this.experiencesPage.empty();
   }
 };
 
