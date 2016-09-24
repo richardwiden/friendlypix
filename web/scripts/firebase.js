@@ -22,7 +22,7 @@ whoami.Firebase = class {
   getExperiences(cb) {
     let ref = this.database.ref('/experiences');
     return ref.orderByChild('year').on('child_added', data => {
-      cb(null, data.val());
+      cb(null, data.val(), data.key);
     });
   }
 };

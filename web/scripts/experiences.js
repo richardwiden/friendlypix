@@ -23,8 +23,11 @@ whoami.Experiences = class {
     this.clear();
     whoami.firebase.getExperiences((err, data, id) => {
       const experience = new whoami.Experience();
-      this.experiences.unshift(experience);
       const expElement = experience.fillExperienceData(id, data.title, data.type, data.desc, data.image);
+
+      this.placeExperience(id, expElement, experience)
+      this.experiences.unshift(experience);
+
       this.experiencesContainer.prepend(expElement);
     });
   }
@@ -40,7 +43,7 @@ whoami.Experiences = class {
       const desc = expData.desc;
       const image = expData.image;
       const expElement = experience.fillExperienceData(id, title, type, desc, image);
-      placeExperience(id, expElement)
+      placeExperience(id, expElement, experience, afterId)
     }
   }
 
@@ -48,13 +51,20 @@ whoami.Experiences = class {
    * Places an experience and its element correctly
    * @param id
    * @param expElement
-   * @param experience
-   * @returns {JQuery|*}
+   * @param {Experience} experience
+   * @param {String} afterId  id of node/element to insert after
+   * @returns {JQuery}
    */
-  placeExperience(id, expElement, experience) {
+  placeExperience(id, expElement, experience, afterId = null) {
     const elements = $('#experience-card-' + id, this.experiencesContainer);
-    if (elements.length) return elements.replaceWith(expElement);
-    if (!afterId) return this.experienceContainer.prepend(expElement); //if we don't know where to place it stick it at the top
+    if (elements.length) {
+      elements.replaceWith(expElement);
+      return expElement;
+    }
+    if (!afterId) {
+      this.experiencesContainer.prepend(expElement); //if we don't know where to place it stick it at the top
+      return expElement;
+    }
     let expArrayIndex = -1;
     for (let i = 0; i < this.experiences.length; i++) {
       if (this.experiences[i].id == afterId) {
@@ -62,14 +72,19 @@ whoami.Experiences = class {
         break;
       }
     }
-    if (!expArrayIndex) return this.experienceContainer.prepend(expElement); //if we don't know where to place it stick it at the top
+
+    if (!expArrayIndex) {//if we don't know where to place it stick it at the top
+      this.experiencesContainer.prepend(expElement);
+      return expElement;
+    }
+
     afterElement = $('#experience-card-' + id, this.experienceContainer);
-    afterElement.insertAfter(expElement);
     this.experiences.splice(expArrayIndex, 0, experience);
+    return expElement.insertAfter(afterElement);
   }
 
   clear() {
-    this.experiencesPage.empty();
+    this.experiencesContainer.empty();
   }
 };
 
