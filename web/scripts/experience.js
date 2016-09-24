@@ -8,9 +8,7 @@ whoami.Experience = class {
    * @constructor
    */
   constructor() {
-    $(document).ready(()=> {
-      this.experienceElement = $(whoami.Experience.createExperienceHtml());
-    });
+    this.experienceElement = $(whoami.Experience.createExperienceHtml());
   }
 
   /**

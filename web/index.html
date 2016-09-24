@@ -44,8 +44,6 @@
   <!-- Linking MDL with CDN so it can be themed-->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.blue_grey-indigo.min.css">
-  <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-
 
   <!-- bower:css -->
   <!-- endbower -->
@@ -97,16 +95,18 @@
     <span class="mdl-layout-title">Title</span>
     <nav class="mdl-navigation">
       <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
     </nav>
+    <div class="signed-in-user-container"><span class="user-name"></span></div>
   </div>
   <main class="mdl-layout__content">
     <div class="page-content">
+
+
       <section id="page-experiences" style="display: none;">
         <div class="experiences-container mdl-grid"></div>
       </section>
+
+
       <section id="page-import" style="display: none;">
         <h1>Import into db</h1>
         <form action="#">
@@ -120,6 +120,14 @@
         </button>
         <div></div>
       </section>
+
+
+      <section id="page-auth" style="display: none">
+        <h2>Login</h2>
+        <div id="firebaseui-auth-container" class="fp-signed-out-only fp-initially-hidden"></div>
+      </section>
+
+
     </div>
   </main>
 </div>
@@ -128,8 +136,10 @@
 <!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/page/page.js"></script>
-<script src="bower_components/js-cookie/src/js.cookie.js"></script>
 <!-- endbower -->
+
+<!-- MDL -->
+<script src="https://code.getmdl.io/1.2.1/material.min.js"></script>
 
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
@@ -154,7 +164,6 @@
     'signInFlow': 'popup',
     'signInOptions': [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID
     ]
   };
   var firebaseUi = new firebaseui.auth.AuthUI(firebase.auth());
@@ -163,6 +172,7 @@
 <script src="/lib/experiences.js"></script>
 <script src="/lib/experience.js"></script>
 <script src="/lib/import.js"></script>
+<script src="/lib/auth.js"></script>
 <script src="/lib/routing.js"></script>
 
 </body>

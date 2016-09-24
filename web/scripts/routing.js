@@ -13,11 +13,12 @@ whoami.Router = class {
       const pipe = whoami.Router.pipe;
       const displayPage = this.displayPage.bind(this);
 
-      const showExeriences = () => whoami.experiences.showExperiences();
+      const showExperience = () => whoami.experiences.showExperiences();
 
-      page('/', pipe(showExeriences(), null, true), pipe(displayPage, {pageId: 'experiences', title: 'experiences'}));
+      page('/', pipe(showExperience(), null, true), pipe(displayPage, {pageId: 'experiences', title: 'experiences'}));
       page('/experiences', () => page('/'));
       page('/import', pipe(whoami.import.showImport, null, true), pipe(displayPage, {pageId: 'import'}));
+      page('/auth', pipe(displayPage, {pageId: 'auth'}));
       page();
     });
   }
@@ -39,6 +40,15 @@ whoami.Router = class {
         $(element).hide();
       }
     });
+  }
+
+  /**
+   * Reloads current page
+   */
+  reloadPage() {
+    let path = window.location.pathname;
+    if (!path || path == '') path = '/';
+    page(path);
   }
 
   /**

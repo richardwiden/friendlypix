@@ -18,7 +18,8 @@ module.exports = function (grunt) {
           'lib/experiences.js': 'scripts/experiences.js',
           'lib/experience.js': 'scripts/experience.js',
           'lib/firebase.js': 'scripts/firebase.js',
-          'lib/import.js': 'scripts/import.js'
+          'lib/import.js': 'scripts/import.js',
+          'lib/auth.js': 'scripts/auth.js'
         }
       }
     },
@@ -46,7 +47,7 @@ module.exports = function (grunt) {
         tasks: ["babel"]
       },
       html: {
-        files: ["index.html"],
+        files: ["index.html",'bower.json'],
         tasks: ["wiredep"]
       },
       css: {

@@ -22,10 +22,10 @@ whoami.Experiences = class {
   showExperiences() {
     this.clear();
     whoami.firebase.getExperiences((err, data, id) => {
-      const experience = new whoami.Experience();
+      const experience = new window.whoami.Experience();
       const expElement = experience.fillExperienceData(id, data.title, data.type, data.desc, data.image);
 
-      this.placeExperience(id, expElement, experience)
+      this.placeExperience(id, expElement, experience);
       this.experiences.unshift(experience);
 
       this.experiencesContainer.prepend(expElement);
@@ -37,7 +37,7 @@ whoami.Experiences = class {
     for (let i = 0; i < expIds.length; i++) {
       const id = expIds[i];
       const expData = experiences[id];
-      const experience = new whoami.Experiences();
+      const experience = new window.whoami.Experiences();
       const title = expData.title;
       const type = expData.type;
       const desc = expData.desc;
