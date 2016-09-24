@@ -12,6 +12,9 @@ whoami.Auth = class {
     $(document).ready(() => {
       this.authPage = $('#page-auth');
       this.authContainer = '#firebaseui-auth-container';
+      this.userContainers = $('.signed-in-user-container');
+      this.noUserContainers = $('.signed-out-user-container');
+      this.usernameContainers=$('span.user-name',this.userContainers);
       firebaseUi.start('#firebaseui-auth-container', uiConfig);
     });
   }
@@ -21,17 +24,22 @@ whoami.Auth = class {
     if (window.whoami.router) window.whoami.router.reloadPage(); // Reload, user has changed
     $(document).ready(()=> {
       //If
-      if (user) setLoggedIn(user);
-      else setLoggedOut();
+      if (user) this.setLoggedIn(user);
+      else this.setLoggedOut();
     });
   }
 
   setLoggedIn(user) {
     this.userId = user.uid;
+    this.userContainers.show(100);
+    this.noUserContainers.hide(100);
+    this.usernameContainers.text(user.displayName);
   }
 
   setLoggedOut() {
     this.userId = null;
+    this.userContainers.hide(100);
+    this.noUserContainers.show(100);
     firebaseUi.start('#firebaseui-auth-container', uiConfig);
   }
 

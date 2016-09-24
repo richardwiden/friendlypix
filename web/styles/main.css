@@ -75,3 +75,11 @@
   overflow-x: visible;
   overflow: visible;
 }
+.whoami-section.section--center {
+  max-width: 860px;
+}
+.whoami-section header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

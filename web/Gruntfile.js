@@ -47,7 +47,7 @@ module.exports = function (grunt) {
         tasks: ["babel"]
       },
       html: {
-        files: ["index.html",'bower.json'],
+        files: ['bower.json'],
         tasks: ["wiredep"]
       },
       css: {
