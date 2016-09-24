@@ -17,19 +17,22 @@ whoami.Experience = class {
    *
    * @param id
    * @param title
-   * @param type personal|work|school
+   * @param type {String} personal|work|school
+   * @param desc
+   * @param image
    * @returns {JQuery|jQuery|HTMLElement|*}
    */
   fillExperienceData(id, title, type,desc,image) {
-    const expElement = this.experienceElement;
-    $('h4', expElement).text(title);
-    $('.mdl-card__supporting-text', expElement).text(desc);
-    const expCard = $('.experience-card', expElement).removeClass('personal professional school');
+    const element = this.experienceElement;
+    element.attr("id","experience-card-"+id);
+    $('h4', element).text(title);
+    $('.mdl-card__supporting-text', element).text(desc);
+    const expCard = $('.experience-card', element).removeClass('personal professional school');
     const classes = expCard.attr('class');
     expCard.removeClass(classes).addClass(type).addClass(classes);
     if(image)
       expCard.attr("style","background-image: url('/images/"+image+"'); background-size: cover; background-position: center center; background-blend-mode: darken;");
-    return expElement;
+    return element;
   }
 
   /**

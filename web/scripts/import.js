@@ -9,22 +9,22 @@ whoami.Import = class {
       this.importPage = importPage;
       this.importButton = $('button', importPage);
       this.importTextarea = $('textarea', importPage);
-      this.importButton.click(()=>whoami.import.importObject);
+
     });
   }
-
-  importObject() {
-    let suc = ()=> {
-    };
-    let fail = () => {
-    };
-    whoami.firebase.importObject(whoami.import.importTextarea.text()).then(suc, fail);
-  }
-  showSucess(){
-
-  }
   showImport() {
-
+    const btn = $('#page-import button');
+    let suc = ()=> {
+      console.log("suc");
+    };
+    let fail = (err) => {
+      console.log(err);
+    };
+    btn.click(()=>{
+      const text = $('#page-import textarea').val();
+      let obj = JSON.parse(text);
+      whoami.firebase.importObject(obj).then(suc, fail);
+    })
   }
 };
 

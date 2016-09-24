@@ -38,16 +38,6 @@
   */
   background-size: cover;
   background-position: 60% 60%;
-
-  @keyframes animatedBackground {
-    from {
-      background-position: 30% 30%;
-    }
-    to {
-      background-position: 60% 60%;
-    }
-  }
-  animation: animatedBackground 6s ease 1;
 }
 
 .demo-layout-transparent .mdl-layout__header,
@@ -72,7 +62,7 @@
 .experience-card {
 
   width: 100%;
-
+  color: white;
   > .mdl-card__actions {
     border-color: rgba(255, 255, 255, 0.2);
   }
@@ -92,6 +82,7 @@
   }
   > .mdl-card__title,
   > .mdl-card__actions,
+  > .mdl-card__supporting-text,
   > .mdl-card__actions > .mdl-button {
     color: #fff;
   }
