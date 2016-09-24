@@ -13,9 +13,9 @@ whoami.Router = class {
       const pipe = whoami.Router.pipe;
       const displayPage = this.displayPage.bind(this);
 
-      const showExperience = () => whoami.experiences.showExperiences();
+      const showExperiences = () => whoami.experiences.showExperiences();
 
-      page('/', pipe(showExperience(), null, true), pipe(displayPage, {pageId: 'experiences', title: 'experiences'}));
+      page('/', pipe(showExperiences(), null, true), pipe(displayPage, {pageId: 'experiences', title: 'experiences'}));
       page('/experiences', () => page('/'));
       page('/import', pipe(whoami.import.showImport, null, true), pipe(displayPage, {pageId: 'import'}));
       page('/auth', pipe(displayPage, {pageId: 'auth'}));

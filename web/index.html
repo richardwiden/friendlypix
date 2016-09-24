@@ -73,6 +73,42 @@
   <button type="button" class="mdl-snackbar__action"></button>
 </div>
 
+<div class="floating-fab signed-in-admin-container">
+  <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+    <i class="material-icons">add</i>
+  </button>
+</div>
+
+<dialog id="add-experience-dialog">
+  <form>
+    <form action="#" class="mdl-grid">
+      <div class=" mdl-cell--12-col mdl-textfield mdl-js-textfield">
+        <textarea class="mdl-textfield__input" type="text" id="create_experience_title"></textarea>
+        <label class="mdl-textfield__label" for="create_experience_title">Title</label>
+      </div>
+      <div class=" mdl-cell--12-col mdl-textfield mdl-js-textfield">
+        <textarea class="mdl-textfield__input" type="text" id="create_experience_desc"></textarea>
+        <label class="mdl-textfield__label" for="create_experience_desc">Desc</label>
+      </div>
+      <div class=" mdl-cell--12-col mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text"  pattern="-?[0-9]*(\.[0-9]+)?" value="2016" id="create_experience_year">
+        <label class="mdl-textfield__label" for="create_experience_title">Year</label>
+      </div>
+      <div class="mdl-cell--12-col mdl-grid">
+        <button type="button" value="personal" class="whoami-personal mdl-chip mdl-cell--4-col">
+          <span class="mdl-chip__text">personal</span>
+        </button>
+        <button type="button" value="professional" class="whoami-professional mdl-chip mdl-cell--4-col">
+          <span class="mdl-chip__text">professional</span>
+        </button>
+        <button type="button" value="school" class="whoami-school mdl-chip mdl-cell--4-col">
+          <span class="mdl-chip__text">school</span>
+        </button>
+      </div>
+    </form>
+  </form>
+</dialog>
+
 
 <!-- Uses a header that scrolls with the text, rather than staying
   locked at the top -->
@@ -99,30 +135,16 @@
     </nav>
     <div class="signed-in-user-container" style="display: none"><span class="user-name"></span></div>
   </div>
-  <main class="mdl-layout__content">
+  <main class="whoami mdl-layout__content">
 
-    <section id="page-experiences" class="whoami-section" style="display: none;">
+    <section id="page-experiences" class="whoami-section section--center" style="display: none;">
       <div class="experiences-container mdl-grid"></div>
-    </section>
-
-    <section id="page-import" class="whoami-section" style="display: none;">
-      <h1>Import into db</h1>
-      <form action="#">
-        <div class="mdl-textfield mdl-js-textfield">
-          <textarea class="mdl-textfield__input" type="text" id="create_experience_text"></textarea>
-          <label class="mdl-textfield__label" for="create_experience_text">Create experience</label>
-        </div>
-      </form>
-      <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent">
-        Create
-      </button>
-      <div></div>
     </section>
 
     <section id="page-auth" class="whoami-section section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp"
              style="display: none">
       <header
-        class="mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color-text--white">
+        class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color-text--white">
         <div class="signed-out-user-container mdl-color--red-800 " style="height:100%;width: 100%;">
           <i class="material-icons">lock</i>
         </div>
@@ -140,12 +162,13 @@
           </div>
           <div class="signed-in-user-container">
             <h4>Signed in</h4>
-            You are signed in as <span style="font-weight: 600;" class="user-name"></span> </div>
+            You are signed in as <span style="font-weight: 600;" class="user-name"></span></div>
         </div>
         <div class="mdl-card__actions">
           <div id="firebaseui-auth-container" class="signed-out-user-container"></div>
           <div id="firebaseui-signout" class="signed-in-user-container">
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--color mdl-color--red-800  mdl-color-text--white">
+            <button
+              class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--color mdl-color--red-800  mdl-color-text--white">
               Sign Out
             </button>
           </div>

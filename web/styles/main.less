@@ -2,6 +2,16 @@
 @professionalColor: #3E4EB8;
 @schoolColor: rgb(33, 150, 243);
 
+.whoami-personal{
+  background-color: @personalColor;
+}
+.whoami-professional{
+  background-color: @professionalColor;
+}
+.whoami-school{
+  background-color: @schoolColor;
+}
+
 #page-splash {
   position: fixed;
   display: flex;
@@ -94,19 +104,30 @@
   overflow: visible;
 }
 
-.signed-in-user-container{
+.signed-in-user-container {
 
 }
-.whoami-section{
-  &.section--center{
+.whoami.mdl-layout__content{
+  display: flex;
+  justify-content: center;
+}
+
+.whoami-section {
+
+  &.section--center {
     max-width: 860px;
   }
-  header>div{
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
+  header > div { // Login lock red/green
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+}
+
+.floating-fab{
+  position: absolute;
+  bottom: 25px;
+  right: 100px;
+  z-index: 2;
 }
 

@@ -1,3 +1,12 @@
+.whoami-personal {
+  background-color: #4caf50;
+}
+.whoami-professional {
+  background-color: #3E4EB8;
+}
+.whoami-school {
+  background-color: #2196f3;
+}
 #page-splash {
   position: fixed;
   display: flex;
@@ -75,6 +84,10 @@
   overflow-x: visible;
   overflow: visible;
 }
+.whoami.mdl-layout__content {
+  display: flex;
+  justify-content: center;
+}
 .whoami-section.section--center {
   max-width: 860px;
 }
@@ -82,4 +95,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.floating-fab {
+  position: absolute;
+  bottom: 25px;
+  right: 100px;
+  z-index: 2;
 }

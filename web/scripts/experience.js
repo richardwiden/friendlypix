@@ -15,15 +15,20 @@ whoami.Experience = class {
    *
    * @param id
    * @param title
-   * @param type {String} personal|work|school
+   * @param type {String} personal|professional|school
    * @param desc
    * @param image
+   * @param year
    * @returns {JQuery|jQuery|HTMLElement|*}
    */
-  fillExperienceData(id, title, type, desc, image) {
+  fillExperienceData(id, title, type, desc, image,year) {
     const expElement = this.experienceElement;
     expElement.attr("id", "experience-card-" + id);
     this.id = id;
+    this.title = title;
+    this.desc = desc;
+    this.image = image;
+    this.year=year;
     $('h4', expElement).text(title);
     $('.mdl-card__supporting-text', expElement).text(desc);
     const expCard = $('.experience-card', expElement).removeClass('personal professional school');

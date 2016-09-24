@@ -13,6 +13,7 @@ whoami.Auth = class {
       this.authPage = $('#page-auth');
       this.authContainer = '#firebaseui-auth-container';
       this.userContainers = $('.signed-in-user-container');
+      this.adminContainers = $('.signed-in-admin-container');
       this.noUserContainers = $('.signed-out-user-container');
       this.usernameContainers = $('span.user-name', this.userContainers);
       this.signOutButton = $('#firebaseui-signout', this.authPage);
@@ -36,13 +37,17 @@ whoami.Auth = class {
 
   setLoggedIn(user) {
     this.userId = user.uid;
+    if (user.uid === 'Hlud91S0J1fWJMXGQV39OkCsAJp2') this.admin = true;
+    if(this.admin) this.adminContainers.show(100);
     this.userContainers.show(100);
     this.noUserContainers.hide(100);
     this.usernameContainers.text(user.displayName);
+
   }
 
   setLoggedOut() {
     this.userId = null;
+    this.adminContainers.hide(100);
     this.userContainers.hide(100);
     this.noUserContainers.show(100);
     firebaseUi.start('#firebaseui-auth-container', uiConfig);

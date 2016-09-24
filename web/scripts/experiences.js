@@ -13,7 +13,43 @@ whoami.Experiences = class {
     $(document).ready(()=> {
       this.experiencesPage = $('#page-experiences');
       this.experiencesContainer = $('.experiences-container', this.experiencesPage);
+      this.addExperienceButton = $('.floating-fab button');
+      this.addExperienceButton.click(()=> {
+        this.showAddExperience();
+      });
+      this.addExperiencesDialog = $('#add-experience-dialog');
+      this.addExperiencesButtons = $('button', this.addExperiencesDialog);
+      this.addExperiencesButtons.click(event => {
+        this.addExperienceFromDialog(event)
+      });
+      this.addExperienceCallback = (err, data, id, afterId) => {
+        this.addExperience(err, data, id, afterId);
+      };
     });
+  }
+
+  addExperienceFromDialog(event) {
+    const type = event.currentTarget.value;
+    const title = $('#create_experience_title', this.addExperiencesDialog).val();
+    const desc = $('#create_experience_desc', this.addExperiencesDialog).val();
+    const year = Number($('#create_experience_year', this.addExperiencesDialog).val());
+    const image = 'nothing.jpg';
+    whoami.firebase.addExperience(title, type, desc, image, year);
+  }
+
+  /**
+   * @public
+   * @param err
+   * @param data
+   * @param id
+   * @param afterId
+   */
+  addExperience(err, data, id) {
+    const experience = new window.whoami.Experience();
+    const expElement = experience.fillExperienceData(id, data.title, data.type, data.desc, data.image, data.year);
+    this.placeExperience(id, expElement, experience);
+    this.experiences.unshift(experience);
+    this.experiencesContainer.prepend(expElement);
   }
 
   /**
@@ -21,66 +57,50 @@ whoami.Experiences = class {
    */
   showExperiences() {
     this.clear();
-    whoami.firebase.getExperiences((err, data, id) => {
-      const experience = new window.whoami.Experience();
-      const expElement = experience.fillExperienceData(id, data.title, data.type, data.desc, data.image);
-
-      this.placeExperience(id, expElement, experience);
-      this.experiences.unshift(experience);
-
-      this.experiencesContainer.prepend(expElement);
-    });
+    whoami.firebase.getExperiences(this.addExperienceCallback);
   }
 
-  addExperiences(experiences, afterId) {
-    const expIds = Object.keys(experiences);
-    for (let i = 0; i < expIds.length; i++) {
-      const id = expIds[i];
-      const expData = experiences[id];
-      const experience = new window.whoami.Experiences();
-      const title = expData.title;
-      const type = expData.type;
-      const desc = expData.desc;
-      const image = expData.image;
-      const expElement = experience.fillExperienceData(id, title, type, desc, image);
-      placeExperience(id, expElement, experience, afterId)
-    }
+  showAddExperience() {
+    this.addExperiencesDialog.get(0).showModal();
   }
+
 
   /**
    * Places an experience and its element correctly
    * @param id
    * @param expElement
    * @param {Experience} experience
-   * @param {String} afterId  id of node/element to insert after
    * @returns {JQuery}
    */
-  placeExperience(id, expElement, experience, afterId = null) {
+  placeExperience(id, expElement, experience) {
     const elements = $('#experience-card-' + id, this.experiencesContainer);
     if (elements.length) {
       elements.replaceWith(expElement);
       return expElement;
     }
-    if (!afterId) {
-      this.experiencesContainer.prepend(expElement); //if we don't know where to place it stick it at the top
-      return expElement;
-    }
+
     let expArrayIndex = -1;
+
     for (let i = 0; i < this.experiences.length; i++) {
-      if (this.experiences[i].id == afterId) {
+      if (this.experiences[i].year > experience.year) continue;
+      if (this.experiences[i].year <= experience.year) {
         expArrayIndex = i;
         break;
       }
     }
 
-    if (!expArrayIndex) {//if we don't know where to place it stick it at the top
+    if (expArrayIndex == -1 || expArrayIndex==0) {//if we don't know where to place it or it's supposed to go at top
+      expElement.hide();
       this.experiencesContainer.prepend(expElement);
+      expElement.fadeIn(1000);
       return expElement;
     }
 
-    afterElement = $('#experience-card-' + id, this.experienceContainer);
+    let afterElement = $('#experience-card-' + this.experiences[expArrayIndex].id, this.experienceContainer);
     this.experiences.splice(expArrayIndex, 0, experience);
-    return expElement.insertAfter(afterElement);
+    //noinspection JSCheckFunctionSignatures
+
+    return expElement.hide().insertAfter(afterElement).show(1000).fadeIn(1000);
   }
 
   clear() {

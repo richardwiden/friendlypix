@@ -19,6 +19,12 @@ whoami.Firebase = class {
     return ref.push(jsonObject);
   }
 
+
+  addExperience(title, type, desc, image, year, cb){
+    let ref = this.database.ref('/experiences');
+    return ref.push({title:title,type:type,desc:desc,image:image,year:year});
+  }
+
   getExperiences(cb) {
     let ref = this.database.ref('/experiences');
     return ref.orderByChild('year').on('child_added', data => {
