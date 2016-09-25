@@ -85,6 +85,20 @@
 .experience-card > .mdl-card__actions > .mdl-button {
   color: #fff;
 }
+.experience-card .comments {
+  transition: all, 0.3s ease;
+  width: 100%;
+}
+.experience-card .comments.hide-comments {
+  height: 0;
+  min-height: 0px;
+  flex: 0;
+}
+.experience-card .comments.show-comments {
+  height: auto;
+  min-height: 200px;
+  flex: 1 1 auto;
+}
 .mdl-layout__container.has-scrolling-header .mdl-layout--fixed-header .mdl-layout__content {
   overflow-y: visible;
   overflow-x: visible;
@@ -98,10 +112,13 @@
   max-width: 860px;
   width: 100%;
 }
-.whoami-section header > div.whoami-lock {
+.whoami-section header > .whoami-lock {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+#page-auth {
+  max-height: 200px;
 }
 .floating-fab {
   position: absolute;
