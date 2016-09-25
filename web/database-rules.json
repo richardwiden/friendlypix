@@ -5,6 +5,19 @@
       "$uid": {
         ".write": "auth.uid === 'Hlud91S0J1fWJMXGQV39OkCsAJp2'"
       }
+    },
+    "comments": {
+      ".read": true,
+      "$experienceId": {
+        ".write":true,
+        ".validate":"root.child('experiences').child($experienceId).exists()",
+        "$commentId":{
+          ".validate": "newData.exists() && newData.hasChild('uid')",
+          "$uid": {
+            ".write": "auth.uid === '$uid'"
+          }
+        }
+      }
     }
   }
 }

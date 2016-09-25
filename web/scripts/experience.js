@@ -8,6 +8,17 @@ whoami.Experience = class {
    * @constructor
    */
   constructor() {
+    /**
+     *
+     */
+    (function ($) {
+      $.fn.onEnter = function (func) {
+        this.bind('keypress', function (e) {
+          if (e.keyCode == 13) func.apply(this, [e]);
+        });
+        return this;
+      };
+    })(jQuery);
     this.signifierCssClasses = 'whoami-personal whoami-professional whoami-school';
     this.hideCommentsCss = 'hide-comments';
     this.showCommentsCss = 'show-comments';
@@ -22,7 +33,11 @@ whoami.Experience = class {
     });
     this.showMore = false;
     this.commentsElement = $('.comments', this.experienceElement);
-
+    this.commentTextArea = $('textarea', this.experienceElement);
+    this.commentTextArea.onEnter(()=> {
+      console.log("enter pressed");
+      this.postComment();
+    });
 
     $(document).ready(()=> {
     });
@@ -36,50 +51,24 @@ whoami.Experience = class {
   moreToggle() {
     this.showMore = !this.showMore;
 
+    // TODO look over if all this needs to be swapped
     const normalClasses = 'experience-card expandable mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-phone mdl-cel--6-tablet mdl-cell--4-col';
     const activeClasses = 'experience-card expanded mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-phone mdl-cel--12-tablet mdl-cell--12-col';
 
     this.experienceElement.toggleClass(normalClasses).toggleClass(activeClasses);
-    this.setImage(this.showMore, this.desc, this.image);
-
     this.commentsElement.toggleClass(this.hideCommentsCss).toggleClass(this.showCommentsCss);
+
+    this.setImage(this.showMore, this.desc, this.image);
     if (this.showMore) { // is showing more
-      this.moreButton.html('Less <i class="material-icons">more</i>');
+      this.moreButton.text('Less');
+      this.loadAndListenForComments();
     }
     else {
-      this.moreButton.html('More & Comment <i class="material-icons">more</i> ');
-    }
-
-    if (this.showMore)
-      this.loadAndListenForComments();
-    else
+      this.moreButton.text('More');
       this.stopListeningForComments();
+    }
   }
 
-  loadAndListenForComments() {
-    whoami.firebase.getComments(this.id, (err, commentData, key)=> {
-      this.addComment(key, commentData.experienceId, commentData.text, commentData.username, commentData.image);
-    });
-  }
-
-  stopListeningForComments() {
-
-  }
-
-  addComment(commentId, experienceId, text, username, image) {
-    const commentHtmlId = '#comment-' + commentId;
-    const foundComments = $(commentHtmlId, this.commentsElement);
-    let comment;
-    if (foundComments.length == 1)
-      comment = foundComments;
-    else
-      comment = whoami.Experience.createExperienceHtml();
-
-    comment.attr("id", commentHtmlId);
-    $('.comment-username', comment).text(username);
-    $('.comment-text', comment).text(text);
-    $('.comment-image', comment).attr('src', image);
-  }
 
   /**
    *
@@ -134,7 +123,7 @@ whoami.Experience = class {
             <div class="comments mdl-card hide-comments "></div>
             <div class="mdl-grid mdl-grid--no-spacing mdl-card__actions mdl-card--border">          
                 <button class="mdl-cell mdl-cell--1-col-phone mdl-cell--1-col-tablet mdl-cell--1-col-desktop mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" value="">
-                    More & Comment <i class="material-icons">more</i>                                                        
+                    More                                                       
                 </button>    
                 <form class="mdl-cell mdl-cell--3-col-phone mdl-cell--7-col-tablet mdl-cell--11-col-desktop hidden-when-not-expanded" action="#">
                     <div class="mdl-textfield mdl-js-textfield">
@@ -148,6 +137,54 @@ whoami.Experience = class {
     `;
   }
 
+  postComment() {
+    let text='';
+    window.whoami.firebase.postComment(this.id,text);
+  }
+
+  /**
+   * TODO split into it's own file?
+   */
+  loadAndListenForComments() {
+    whoami.firebase.getComments(this.id, (err, commentData, key)=> {
+      this.addCommentToPage(key, commentData.experienceId, commentData.text, commentData.username, commentData.image);
+    });
+  }
+
+  /**
+   * TODO split into its down file?
+   */
+  stopListeningForComments() {
+
+  }
+
+  /**
+   * TODO split into it's own file
+   * @param commentId
+   * @param experienceId
+   * @param text
+   * @param username
+   * @param image
+   */
+  addCommentToPage(commentId, experienceId, text, username, image) {
+    const commentHtmlId = '#comment-' + commentId;
+    const foundComments = $(commentHtmlId, this.commentsElement);
+    let comment;
+    if (foundComments.length == 1)
+      comment = foundComments;
+    else
+      comment = whoami.Experience.createExperienceHtml();
+
+    comment.attr("id", commentHtmlId);
+    $('.comment-username', comment).text(username);
+    $('.comment-text', comment).text(text);
+    $('.comment-image', comment).attr('src', image);
+  }
+
+  /**
+   * TODO Should be split off into it's own file?
+   * @returns {string}
+   */
   static createCommentHtml() {
     return `
         <div class="comment">
@@ -164,6 +201,7 @@ whoami.Experience = class {
     
     `;
   }
+
 
 };
 whoami.experience = new whoami.Experience();

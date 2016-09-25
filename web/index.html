@@ -54,7 +54,9 @@
 
 </head>
 <body>
-<a href="https://github.com/richardwiden/whoami"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 2;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
+<a href="https://github.com/richardwiden/whoami"><img
+  style="position: absolute; top: 0; right: 0; border: 0; z-index: 2;"
+  src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
 
 <!-- Welcome splash -->
 <section id="page-splash">
@@ -91,7 +93,8 @@
         <label class="mdl-textfield__label" for="create_experience_desc">Desc</label>
       </div>
       <div class=" mdl-cell--12-col mdl-textfield mdl-js-textfield">
-        <input class="mdl-textfield__input" type="text"  pattern="-?[0-9]*(\.[0-9]+)?" value="2016" id="create_experience_year">
+        <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" value="2016"
+               id="create_experience_year">
         <label class="mdl-textfield__label" for="create_experience_title">Year</label>
       </div>
       <div class="mdl-cell--12-col mdl-grid">
@@ -137,7 +140,8 @@
   </div>
   <main class="whoami mdl-layout__content">
 
-    <section id="page-experiences" class="whoami-section section--center experiences-container mdl-grid " style="display: none;">
+    <section id="page-experiences" class="whoami-section section--center experiences-container mdl-grid "
+             style="display: none;">
 
     </section>
 
@@ -211,7 +215,12 @@
   var uiConfig = {
     'signInFlow': 'popup',
     'signInOptions': [
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      {
+        provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        scopes: [
+          'https://www.googleapis.com/auth/plus.login'
+        ]
+      }
     ]
   };
   var firebaseUi = new firebaseui.auth.AuthUI(firebase.auth());

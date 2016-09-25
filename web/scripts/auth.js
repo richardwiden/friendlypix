@@ -6,7 +6,7 @@ whoami.Auth = class {
   constructor() {
     this.auth = firebase.auth();
     this.userId = null;
-
+    this.user = null;
     this.auth.onAuthStateChanged(user => this.onAuthStateChanged(user));
 
     $(document).ready(() => {
@@ -37,8 +37,9 @@ whoami.Auth = class {
 
   setLoggedIn(user) {
     this.userId = user.uid;
+    this.user = user;
     if (user.uid === 'Hlud91S0J1fWJMXGQV39OkCsAJp2') this.admin = true;
-    if(this.admin) this.adminContainers.show(100);
+    if (this.admin) this.adminContainers.show(100);
     this.userContainers.show(100);
     this.noUserContainers.hide(100);
     this.usernameContainers.text(user.displayName);
@@ -46,7 +47,7 @@ whoami.Auth = class {
   }
 
   setLoggedOut() {
-    this.userId = null;
+    this.userId = this.user = null;
     this.adminContainers.hide(100);
     this.userContainers.hide(100);
     this.noUserContainers.show(100);
