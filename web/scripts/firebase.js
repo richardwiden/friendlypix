@@ -9,16 +9,17 @@ whoami.Firebase = class {
    */
   constructor() {
     this.database = firebase.database();
-    this.refs ={};
+    this.refs = {};
     $(document).ready(()=> {
 
     });
   }
 
   getComments(experienceId, cb) {
-
+    if (this.commentRefs[experienceId]) this.database.ref.off('child_added', this.commentRefs[experienceId].off());
     let ref = this.database.ref('/comments').orderByChild('experienceId').equalTo(experienceId).on('child_added', (data) => {
-      return cb(null, data.val(),data.key)
+      this.commentRefs[experienceId] = ref;
+      return cb(null, data.val(), data.key)
     });
   }
 

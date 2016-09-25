@@ -28,6 +28,10 @@ whoami.Experience = class {
     });
   }
 
+  clear() {
+    this.stopListeningForComments();
+  }
+
 
   moreToggle() {
     this.showMore = !this.showMore;
@@ -46,14 +50,35 @@ whoami.Experience = class {
       this.moreButton.html('More & Comment <i class="material-icons">more</i> ');
     }
 
-    if(this.showMore)
+    if (this.showMore)
       this.loadAndListenForComments();
     else
       this.stopListeningForComments();
   }
 
-  loadAndListenForComments(){
-    firebase.database
+  loadAndListenForComments() {
+    whoami.firebase.getComments(this.id, (err, commentData, key)=> {
+      this.addComment(key, commentData.experienceId, commentData.text, commentData.username, commentData.image);
+    });
+  }
+
+  stopListeningForComments() {
+
+  }
+
+  addComment(commentId, experienceId, text, username, image) {
+    const commentHtmlId = '#comment-' + commentId;
+    const foundComments = $(commentHtmlId, this.commentsElement);
+    let comment;
+    if (foundComments.length == 1)
+      comment = foundComments;
+    else
+      comment = whoami.Experience.createExperienceHtml();
+
+    comment.attr("id", commentHtmlId);
+    $('.comment-username', comment).text(username);
+    $('.comment-text', comment).text(text);
+    $('.comment-image', comment).attr('src', image);
   }
 
   /**
@@ -111,6 +136,23 @@ whoami.Experience = class {
               <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" value="">
                     More & Comment <i class="material-icons">more</i>                                                        
                </button>    
+            </div>
+        </div>
+    
+    `;
+  }
+
+  static createCommentHtml() {
+    return `
+        <div class="comment">
+            <div>
+                <img class="comment-image" style="height: 50px; width: 50px; background-color: blue"/>
+                <div class="comment-username" style="height: 50px; width: auto; background-color: maroon;">
+                    title
+                </div>
+            </div>
+            <div class="comment-text" style="height: 50px; width: 100%; background-color: darkgreen;">
+                Text
             </div>
         </div>
     
