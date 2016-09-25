@@ -53,17 +53,23 @@
   background-color: #2196f3;
 }
 .experience-card {
-  width: 100%;
+  transition: all 0.3s ease;
   color: white;
 }
 .experience-card > .mdl-card__actions {
   border-color: rgba(255, 255, 255, 0.2);
 }
 .experience-card > .mdl-card__title {
-  align-items: flex-start;
+  height: 3.75em;
 }
-.experience-card > .mdl-card__title > h4 {
-  margin-top: 0;
+.experience-card > .mdl-card__title h4 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
 }
 .experience-card > .mdl-card__actions {
   display: flex;
@@ -90,8 +96,9 @@
 }
 .whoami-section.section--center {
   max-width: 860px;
+  width: 100%;
 }
-.whoami-section header > div {
+.whoami-section header > div.whoami-lock {
   display: flex;
   justify-content: center;
   align-items: center;

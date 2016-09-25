@@ -2,13 +2,15 @@
 @professionalColor: #3E4EB8;
 @schoolColor: rgb(33, 150, 243);
 
-.whoami-personal{
+.whoami-personal {
   background-color: @personalColor;
 }
-.whoami-professional{
+
+.whoami-professional {
   background-color: @professionalColor;
 }
-.whoami-school{
+
+.whoami-school {
   background-color: @schoolColor;
 }
 
@@ -71,16 +73,25 @@
 
 .experience-card {
 
-  width: 100%;
+  transition: all 0.3s ease;
   color: white;
+
+
   > .mdl-card__actions {
     border-color: rgba(255, 255, 255, 0.2);
   }
   > .mdl-card__title {
-    align-items: flex-start;
-  }
-  > .mdl-card__title > h4 {
-    margin-top: 0;
+    height: 3.75em;
+    h4 {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: auto;
+      padding: 0;
+      margin: 0;
+      flex-grow: 1;
+    }
+
   }
   > .mdl-card__actions {
     display: flex;
@@ -107,7 +118,8 @@
 .signed-in-user-container {
 
 }
-.whoami.mdl-layout__content{
+
+.whoami.mdl-layout__content {
   display: flex;
   justify-content: center;
 }
@@ -116,15 +128,16 @@
 
   &.section--center {
     max-width: 860px;
+    width: 100%;
   }
-  header > div { // Login lock red/green
+  header > div.whoami-lock { // Login lock red/green
     display: flex;
     justify-content: center;
     align-items: center;
   }
 }
 
-.floating-fab{
+.floating-fab {
   position: absolute;
   bottom: 25px;
   right: 100px;

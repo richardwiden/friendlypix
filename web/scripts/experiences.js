@@ -12,7 +12,7 @@ whoami.Experiences = class {
 
     $(document).ready(()=> {
       this.experiencesPage = $('#page-experiences');
-      this.experiencesContainer = $('.experiences-container', this.experiencesPage);
+      this.experiencesContainer =this.experiencesPage;// $('.experiences-container', this.experiencesPage);
       this.addExperienceButton = $('.floating-fab button');
       this.addExperienceButton.click(()=> {
         this.showAddExperience();
