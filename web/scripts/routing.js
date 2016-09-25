@@ -54,6 +54,7 @@ whoami.Router = class {
   /**
    * Pipes the given function and passes the given attribute and Page.js context.
    * Set 'optContinue' to true if there are further functions to call.
+   * @licence Google, Webpix
    */
   static pipe(funct, attribute, optContinue) {
     return (context, next) => {

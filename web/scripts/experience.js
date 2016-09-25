@@ -36,8 +36,8 @@ whoami.Experience = class {
   moreToggle() {
     this.showMore = !this.showMore;
 
-    const normalClasses = 'experience-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-phone mdl-cel--6-tablet mdl-cell--4-col';
-    const activeClasses = 'experience-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-phone mdl-cel--12-tablet mdl-cell--12-col';
+    const normalClasses = 'experience-card expandable mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-phone mdl-cel--6-tablet mdl-cell--4-col';
+    const activeClasses = 'experience-card expanded mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-phone mdl-cel--12-tablet mdl-cell--12-col';
 
     this.experienceElement.toggleClass(normalClasses).toggleClass(activeClasses);
     this.setImage(this.showMore, this.desc, this.image);
@@ -126,16 +126,22 @@ whoami.Experience = class {
    */
   static createExperienceHtml() {
     return `
-      <div class="experience-card mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-phone mdl-cel--6-tablet mdl-cell--4-col">            
+      <div class="experience-card expandable mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-phone mdl-cel--6-tablet mdl-cell--4-col">            
             <div class="mdl-card__title" >              
                 <h4></h4>              
             </div>
             <div class="mdl-card__supporting-text  mdl-card--expand"></div>
             <div class="comments mdl-card hide-comments "></div>
-            <div class="mdl-card__actions mdl-card--border">          
-              <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" value="">
+            <div class="mdl-grid mdl-grid--no-spacing mdl-card__actions mdl-card--border">          
+                <button class="mdl-cell mdl-cell--1-col-phone mdl-cell--1-col-tablet mdl-cell--1-col-desktop mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" value="">
                     More & Comment <i class="material-icons">more</i>                                                        
-               </button>    
+                </button>    
+                <form class="mdl-cell mdl-cell--3-col-phone mdl-cell--7-col-tablet mdl-cell--11-col-desktop hidden-when-not-expanded" action="#">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <textarea class="mdl-textfield__input" type="text" rows= "3" placeholder="Drop a comment" ></textarea>
+                  
+                    </div>
+                </form>
             </div>
         </div>
     

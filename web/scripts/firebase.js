@@ -9,7 +9,7 @@ whoami.Firebase = class {
    */
   constructor() {
     this.database = firebase.database();
-    this.refs = {};
+    this.commentRefs = {};
     $(document).ready(()=> {
 
     });

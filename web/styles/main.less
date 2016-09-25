@@ -71,6 +71,16 @@
   background-color: @schoolColor;
 }
 
+.expandable {
+  .hidden-when-not-expanded {
+    display: none;
+  }
+}
+
+.expanded {
+
+}
+
 .experience-card {
 
   transition: all 0.3s ease;
@@ -92,9 +102,24 @@
     }
 
   }
+  form {
+    div{
+      width: 100%;
+    }
+    textarea {
+      background-color: white;
+      width: 100%;
+      color: black;
+    }
+    padding-right: 10px;
+  }
+
+
+
   > .mdl-card__actions {
     display: flex;
     box-sizing: border-box;
+    flex-direction: row;
     align-items: center;
   }
   > .mdl-card__actions > .material-icons {
