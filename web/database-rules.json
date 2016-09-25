@@ -9,15 +9,16 @@
     "comments": {
       ".read": true,
       "$experienceId": {
-        ".write":true,
-        ".validate":"root.child('experiences').child($experienceId).exists()",
-        "$commentId":{
+        ".write": true,
+        ".validate": "root.child('experiences').child($experienceId).exists()",
+        "$commentId": {
           ".validate": "newData.exists() && newData.hasChild('uid')",
           "$uid": {
             ".write": "auth.uid === '$uid'"
           }
         }
-      }
+      },
+      ".indexOn": "experienceId"
     }
   }
 }

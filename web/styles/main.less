@@ -103,7 +103,7 @@
 
   }
   form {
-    div{
+    div {
       width: 100%;
     }
     textarea {
@@ -113,8 +113,6 @@
     }
     padding-right: 10px;
   }
-
-
 
   > .mdl-card__actions {
     display: flex;
@@ -133,7 +131,9 @@
   }
   .comments {
     transition: all, 0.3s ease;
-    width: 100%;
+    width: ~"calc(100% - 32px)";
+    background-color: transparent;
+    margin:16px;
     &.hide-comments {
       height: 0;
       min-height: 0px;
@@ -143,6 +143,31 @@
       height: auto;
       min-height: 200px;
       flex: 1 1 auto;
+    }
+    .comment {
+      display: flex;
+      flex-direction: row;
+      .comment-image {
+        flex: 1 1 auto;
+        height: 100%;
+        width: 32px;
+      }
+      .comment-text-displayName {
+        flex: 35 1 auto;
+        .comment-displayName {
+          height: 20px;
+          padding: 0 0 0 8px;
+          margin: 0;
+          width: 100%;
+        }
+
+        .comment-text {
+          min-height: 50px;
+          padding: 0 0 0 16px;
+          margin: 0;
+          width: 100%;
+        }
+      }
     }
   }
 }

@@ -138,8 +138,8 @@ whoami.Experience = class {
   }
 
   postComment() {
-    let text='';
-    window.whoami.firebase.postComment(this.id,text);
+    let text = '';
+    window.whoami.firebase.postComment(this.id, text);
   }
 
   /**
@@ -147,7 +147,7 @@ whoami.Experience = class {
    */
   loadAndListenForComments() {
     whoami.firebase.getComments(this.id, (err, commentData, key)=> {
-      this.addCommentToPage(key, commentData.experienceId, commentData.text, commentData.username, commentData.image);
+      this.addCommentToPage(key, commentData.experienceId, commentData.text, commentData.displayName, commentData.image);
     });
   }
 
@@ -163,22 +163,23 @@ whoami.Experience = class {
    * @param commentId
    * @param experienceId
    * @param text
-   * @param username
+   * @param displayName
    * @param image
    */
-  addCommentToPage(commentId, experienceId, text, username, image) {
+  addCommentToPage(commentId, experienceId, text, displayName, image) {
     const commentHtmlId = '#comment-' + commentId;
     const foundComments = $(commentHtmlId, this.commentsElement);
     let comment;
     if (foundComments.length == 1)
       comment = foundComments;
     else
-      comment = whoami.Experience.createExperienceHtml();
+      comment = $(whoami.Experience.createCommentHtml());
 
     comment.attr("id", commentHtmlId);
-    $('.comment-username', comment).text(username);
+    $('.comment-displayName', comment).text(displayName);
     $('.comment-text', comment).text(text);
     $('.comment-image', comment).attr('src', image);
+    this.commentsElement.append(comment);
   }
 
   /**
@@ -188,15 +189,15 @@ whoami.Experience = class {
   static createCommentHtml() {
     return `
         <div class="comment">
-            <div>
-                <img class="comment-image" style="height: 50px; width: 50px; background-color: blue"/>
-                <div class="comment-username" style="height: 50px; width: auto; background-color: maroon;">
+            <img class="comment-image"/>
+            <div class="comment-text-displayName">                
+                <h5 class="comment-displayName">
                     title
-                </div>
+                </h5>
+                <div class="comment-text">                
             </div>
-            <div class="comment-text" style="height: 50px; width: 100%; background-color: darkgreen;">
-                Text
             </div>
+            
         </div>
     
     `;

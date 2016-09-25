@@ -19,27 +19,32 @@ whoami.Firebase = class {
   postComment(experienceId, text, cb) {
     console.log(JSON.stringify(window.whoami.auth.user));
     let image = '';
+    let displayName = 'Unknown user';
     if (whoami.auth &&
       whoami.auth.user &&
       whoami.auth.user.providerData &&
-      whoami.auth.user.providerData[0] &&
-      whoami.auth.user.providerData[0].photoURL)
-      image = whoami.auth.user.providerData[0].photoURL;
-    let uid = whoami.auth.id;
+      whoami.auth.user.providerData[0]) {
+      if (whoami.auth.user.providerData[0].photoURL)
+        image = whoami.auth.user.providerData[0].photoURL;
+      if (whoami.auth.user.providerData[0].displayName)
+        displayName = whoami.auth.user.providerData[0].displayName;
+    }
+
+    let uid = whoami.auth.userId;
 
     if (image == '')
       image = '/images/silhouette.jpg';
 
-    let comment = {uid: uid, experienceId: experienceId, text: text, image: image};
+    let comment = {uid: uid, experienceId: experienceId, text: text, image: image, displayName:displayName};
 
-    let ref = this.database.ref('/comments/' + experienceId+'/');
+    let ref = this.database.ref('/comments/' + experienceId + '/');
     return ref.push(comment);
   }
 
   getComments(experienceId, cb) {
-    if (this.commentRefs[experienceId]) this.database.ref.off('child_added', this.commentRefs[experienceId].off());
-    let ref = this.database.ref('/comments').orderByChild('experienceId').equalTo(experienceId).on('child_added', (data) => {
-      this.commentRefs[experienceId] = ref;
+    if (this.commentRefs[experienceId]) this.database.ref.off('child_added', this.commentRefs[experienceId]);
+    this.commentRefs[experienceId] = this.database.ref('/comments/' + experienceId).on('child_added', (data) => {
+      console.log(JSON.stringify(data.val));
       return cb(null, data.val(), data.key)
     });
   }
