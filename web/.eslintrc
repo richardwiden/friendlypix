@@ -32,7 +32,7 @@
     "swal": true,
     "latinize": true,
     "componentHandler": true,
-    "friendlyPix": true,
+    "whoami": true,
     "page": true,
     "ga": true,
     "firebase": true,

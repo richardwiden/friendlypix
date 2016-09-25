@@ -1,3 +1,6 @@
+/**
+ * @author Richard Widén
+ */
 module.exports = function (grunt) {
   grunt.initConfig({
     wiredep: {

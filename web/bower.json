@@ -1,22 +1,19 @@
 {
-  "name": "friendlypix",
-  "description": "Share your pics with FriendlyPix. Powered by Firebase.",
+  "name": "whoami",
+  "description": "Explaining who Richard Widen is",
   "version": "1.0.0",
   "authors": [
-    "Nicolas Garnier <nivco@google.com> (https://firebase.google.com/)"
+
+    "Richard Widén <richardwiden@gmail.com> (https://pelagic-cycle-124319.firebaseapp.com/)"
   ],
-  "homepage": "https://friendly-pix.com/",
+  "homepage": "https://pelagic-cycle-124319.firebaseapp.com/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/firebase/friendlypix"
+    "url": "https://github.com/richardwiden/whoami"
   },
   "license": "Apache v2.0",
   "keywords": [
-    "pictures",
-    "photos",
-    "firebase",
-    "realtime",
-    "sharing"
+    "resume"
   ],
   "dependencies": {
     "jquery": "2.2.3",

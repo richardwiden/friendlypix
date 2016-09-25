@@ -1,5 +1,5 @@
 # Experiences
-Forked off the Friendly Pix Web sample app and re-implemented
+Forked off the Friendly Pix Web sample app and re-implemented as a learning project
 
 ## Initial setup, build tools and dependencies
 Tool | Description
@@ -8,8 +8,8 @@ Tool | Description
 [Firebase](https://firebase.google.com/docs/web/setup) | Storage, sync, hosting & Auth 
 [Firebase-UI](https://github.com/firebase/firebaseui-web) | Auth-UI  
 [bower](http://bower.io/) | Web-Dependencies
-* [npm](https://www.npmjs.com/) | devDependencies later on: build and deploy 
-* [BabelJs](http://babeljs.io) | Transpile ES2015
+[npm](https://www.npmjs.com/) | devDependencies later on: build and deploy 
+[BabelJs](http://babeljs.io) | Transpile ES2015
 
 Install all Build/Deploy tools dependencies by running:
 
