@@ -35,7 +35,6 @@ whoami.Experience = class {
     this.commentsElement = $('.comments', this.experienceElement);
     this.commentTextArea = $('textarea', this.experienceElement);
     this.commentTextArea.onEnter(()=> {
-      console.log("enter pressed");
       this.postComment();
     });
 
@@ -138,7 +137,8 @@ whoami.Experience = class {
   }
 
   postComment() {
-    let text = '';
+    let text = this.commentTextArea.val();
+    this.commentTextArea.val('');
     window.whoami.firebase.postComment(this.id, text);
   }
 
